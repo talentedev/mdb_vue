@@ -7,7 +7,7 @@ import ComponentsPage from '../docs/ComponentsPage';
 import AdvancedPage from '../docs/AdvancedPage';
 
 // FREE
-import HomePage from '../docs/HomePage';
+// import HomePage from '../docs/HomePage';
 import GridPage from '../docs/GridPage';
 import BadgePage from '../docs/BadgePage';
 import CardPage from '../docs/CardPage';
@@ -73,6 +73,9 @@ import ClassicFormPage from '../docs/pro/sections/ClassicFormPage';
 import ContactFormPage from '../docs/pro/sections/ContactFormPage';
 import VideoBackgroundPage from '../docs/pro/sections/VideoBackgroundPage';
 
+// Custom
+import Home from '../components/home/Home';
+
 Vue.use(Router);
 
 export default new Router({
@@ -80,7 +83,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: HomePage
+      component: Home
     },
 
     // PAGES
