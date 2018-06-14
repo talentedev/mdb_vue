@@ -36,6 +36,12 @@ export default {
     },
     updatePredicate() {
       this.isMobile = window.innerWidth < this.breakWidth;
+      if (window.innerWidth < this.breakWidth) {
+        this.collapseSideBar = false;
+      }
+      if (window.innerWidth > this.breakWidth) {
+        this.collapseSideBar = true;
+      }
     }
   },
   mounted() {
@@ -46,11 +52,15 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
+$breakWidth: 770px;
 main {
   padding: 78px 24px;
   background-color: #f0f2f5;
   height: -webkit-fill-available;
+  @media only screen and (max-width: $breakWidth)  {
+    padding: 68px 0;
+  }
 }
 .collapsed-content {
   margin-left: 240px;

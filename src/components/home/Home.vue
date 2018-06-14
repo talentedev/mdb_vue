@@ -1,8 +1,8 @@
 <template>
   <container fluid>
     <row>
-      <column lg="8">
-        <div class="card-deck">
+      <column xl="8">
+        <div class="card-deck mb-2">
           <card>
             <card-body>
               <card-title>Track your days</card-title>
@@ -59,9 +59,9 @@
               </card-title>
               <card-text class="float-none">
                 <row>
-                  <column md="6">
+                  <column col="6">
                     <div class="d-flex justify-content-center">
-                      <mini-chart :value="diaryDays" color="#246e9a" diameter="150" strokeWidth="10">
+                      <mini-chart :value="diaryDays" color="#246e9a" diameter="130" strokeWidth="10">
                         {{diaryDays}}%
                       </mini-chart>
                     </div>
@@ -69,9 +69,9 @@
                       <p class="m-0">Diary days</p>
                     </div>
                   </column>
-                  <column md="6">
+                  <column col="6">
                     <div class="d-flex justify-content-center">
-                      <mini-chart :value="uniteWeek" color="#82d929" diameter="150" strokeWidth="10">
+                      <mini-chart :value="uniteWeek" color="#82d929" diameter="130" strokeWidth="10">
                         {{uniteWeek}}%
                       </mini-chart>
                     </div>
@@ -87,7 +87,7 @@
           </card>
         </div>
       </column>
-      <column lg="4">
+      <column xl="4">
         <card>
           <card-body class="p-0">
             <card-title class="deep-orange lighten-1 p-3">
@@ -111,7 +111,7 @@
       </column>
     </row>
     <row class="mt-3">
-      <column col="8">
+      <column xl="8">
         <div class="card-deck">
           <card>
             <card-body>
