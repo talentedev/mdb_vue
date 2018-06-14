@@ -75,15 +75,21 @@ import VideoBackgroundPage from '../docs/pro/sections/VideoBackgroundPage';
 
 // Custom
 import Home from '../components/home/Home';
+import Contracts from '../components/contracts/Contracts';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
-      component: Home
+      component: Home,
+    },
+    {
+      path: '/contracts',
+      name: 'Contracts',
+      component: Contracts
     },
 
     // PAGES

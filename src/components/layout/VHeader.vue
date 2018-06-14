@@ -1,45 +1,39 @@
 <template>
-  <!--Navbar-->
-  <navbar position="top" name=" " href="#" class="navbar-expand-sm" scrolling>
-    <navbar-collapse>
-      <navbar-nav>
-        <fa icon="bars"/>
-        <a class="logo-wrapper ml-4"><img alt="" class="img-fluid" src="../../assets/img/alavida-logo-colored.jpg"/></a>
-      </navbar-nav>
-      <navbar-nav right>
-        <navbar-item href="#!"><fa icon="bell-o"/><badge color="red">3</badge></navbar-item>
-        <navbar-item href="#!"><fa icon="commenting-o"/><badge color="orange">3</badge></navbar-item>
-        <!-- Dropdown -->
-        <dropdown tag="li" class="nav-item">
-          <dropdown-toggle @click.native="toggleDropdown(0)" tag="div" navLink>
-            <img src="../../assets/img/avatar.png">
-            <p class="float-right"><fa icon="caret-down"/></p>
-            <div class="float-right pl-2">
-              <p class="m-0 blue-grey-text">Jeff Magnusson</p>
-              <p class="m-0 blue-grey-text"><small>8:20 am PDT</small></p>
-            </div>
-          </dropdown-toggle>
-          <dropdown-menu v-show="active[0]">
-            <dropdown-item>Settings</dropdown-item>
-            <dropdown-item>Log out</dropdown-item>
-          </dropdown-menu>
-        </dropdown>
-      </navbar-nav>
-    </navbar-collapse>
+  <navbar position="top" name=" " href="#" class="navbar-expand" scrolling>
+    <navbar-nav>
+      <fa icon="bars" @click.native="onCollaseSideBar()"/>
+      <a class="logo-wrapper ml-4"><img alt="" class="img-fluid" src="../../assets/img/alavida-logo-colored.jpg"/></a>
+    </navbar-nav>
+    <navbar-nav right>
+      <navbar-item href="#!"><fa icon="bell-o"/><badge color="red">3</badge></navbar-item>
+      <navbar-item href="#!"><fa icon="commenting-o"/><badge color="orange">3</badge></navbar-item>
+      <dropdown v-if="showAccountSettings" tag="li" class="nav-item">
+        <dropdown-toggle @click.native="toggleDropdown(0)" tag="div" navLink>
+          <img src="../../assets/img/avatar.png">
+          <p class="float-right"><fa icon="caret-down"/></p>
+          <div class="float-right pl-2">
+            <p class="m-0 blue-grey-text">Jeff Magnusson</p>
+            <p class="m-0 blue-grey-text"><small>8:20 am PDT</small></p>
+          </div>
+        </dropdown-toggle>
+        <dropdown-menu v-show="active[0]">
+          <dropdown-item>Settings</dropdown-item>
+          <dropdown-item>Log out</dropdown-item>
+        </dropdown-menu>
+      </dropdown>
+    </navbar-nav>
   </navbar>
-  <!--/.Navbar-->
 </template>
 
 <script>
-import { Navbar, NavbarItem, NavbarNav, NavbarCollapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Fa, Badge } from 'mdbvue';
+import { Navbar, NavbarItem, NavbarNav, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Fa, Badge } from 'mdbvue';
 
 export default {
-  name: 'NavbarPage',
+  name: 'VHeader',
   components: {
     Navbar,
     NavbarItem,
     NavbarNav,
-    NavbarCollapse,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -47,11 +41,18 @@ export default {
     Fa,
     Badge
   },
+  props: {
+    breakWidth: {
+      type: Number,
+      default: 770
+    }
+  },
   data() {
     return {
       active: {
         0: false
-      }
+      },
+      showAccountSettings: true
     };
   },
   methods: {
@@ -78,10 +79,18 @@ export default {
         parent = parent.parentNode;
       }
       this.allDropdownsClose(e.target);
+    },
+    onCollaseSideBar() {
+      this.$parent.onCollapseSideBar();
+    },
+    updatePredicate() {
+      this.showAccountSettings = window.innerWidth > this.breakWidth;
     }
   },
   mounted() {
+    this.updatePredicate();
     document.addEventListener('click', this.onClick);
+    window.addEventListener("resize", this.updatePredicate);
   },
   destroyed() {
     document.removeEventListener('click', this.onClick);
@@ -91,7 +100,8 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  padding: 5px;
+  padding: 5px !important;
+  background-color: white;
 }
 .logo-wrapper img {
   width: 115px;

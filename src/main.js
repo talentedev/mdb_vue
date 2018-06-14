@@ -3,9 +3,12 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import Datatable from 'vue2-datatable-component';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import '../build/css/mdb.css';
+
+Vue.use(Datatable);
 
 Vue.config.productionTip = false;
 

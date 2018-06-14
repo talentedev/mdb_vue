@@ -14,7 +14,7 @@
         </ul>
       </div>
     </transition>
-    <div v-if="OpenedFromOutside" @click="handleOverlayClick" id="sidenav-overlay"></div>
+    <!-- <div v-if="OpenedFromOutside" @click="handleOverlayClick" id="sidenav-overlay"></div> -->
   </div>
 </template>
 
@@ -107,7 +107,7 @@ export default {
   methods: {
     updatePredicate() {
       if (!this.hidden) {
-        this.isThere = window.innerWidth > this.breakWidth;
+        // this.isThere = window.innerWidth < this.breakWidth;
       }
     },
     handleOverlayClick() {
